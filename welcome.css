@@ -1,0 +1,137 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .welcome-container {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .content-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1, h2, h3 {
+    color: #333;
+  }
+  
+  p {
+    line-height: 1.5;
+    color: #555;
+  }
+  
+  .key-features, .security-assurance {
+    margin-top: 20px;
+  }
+  
+  .key-features ul, .security-assurance p {
+    line-height: 1.6;
+  }
+  
+
+  /* Additional Styling for About Us Section */
+.about-container {
+    margin-top: 40px;
+    text-align: justify;
+  }
+  
+  .about-container h2 {
+    color: #333;
+  }
+  
+  .about-container p {
+    line-height: 1.6;
+  }
+  
+  .address-container {
+    margin-top: 20px;
+  }
+  
+  .address-container address {
+    color: #333;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+
+  
+  .contact-us {
+    margin-top: 40px;
+  }
+  
+  .contact-us form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .contact-us label {
+    color: #333;
+  }
+  
+  .contact-us input, .contact-us textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+  }
+  
+  .contact-us textarea {
+    grid-column: span 2;
+  }
+  
+  .contact-us button {
+    padding: 12px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .contact-us button:hover {
+    background-color: #45a049;
+  }
+  
+  .address-container {
+    margin-top: 20px;
+  }
+  
+  .address-container address {
+    color: #333;
+  }
+  

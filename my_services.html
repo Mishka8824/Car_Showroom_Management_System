@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Services - Car Management System</title>
+    <link rel="stylesheet" href="my_services_styles.css" />
+</head>
+<body>
+    <h1>My Services</h1>
+
+    <table id="myServicesTable">
+        <thead>
+            <tr>
+                <th>Car ID</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Service Type</th>
+                <th>Service Date</th>
+                <th>Service Cost</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        // Fetch data from the server
+        fetch('/my-services')
+            .then(response => response.json())
+            .then(data => {
+                const myServicesTable = document.getElementById('myServicesTable');
+                const tbody = myServicesTable.querySelector('tbody');
+    
+                // Check if there are no services
+                if (data.services.length === 0) {
+                    const noServicesRow = document.createElement('tr');
+                    const noServicesCell = document.createElement('td');
+                    noServicesCell.setAttribute('colspan', '7'); // Adjust colspan to match the number of columns
+                    noServicesCell.textContent = 'No services required.';
+                    noServicesRow.appendChild(noServicesCell);
+                    tbody.appendChild(noServicesRow);
+                } else {
+                    // Populate the table with services and associated car details
+                    data.services.forEach(service => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `<td>${service.Car_Id}</td>
+                                         <td>${service.BRAND}</td>
+                                         <td>${service.MODEL}</td>
+                                         <td>${service.YEAR}</td>
+                                         <td>${service.Service_Type}</td>
+                                         <td>${service.Service_Date}</td>
+                                         <td>${service.Service_Cost}</td>`;
+                        tbody.appendChild(row);
+                    });
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>

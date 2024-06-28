@@ -1,0 +1,37 @@
+/* my_services_styles.css */
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.services-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.services-table th, .services-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.services-table th {
+    background-color: #333;
+    color: #fff;
+}
+
+.services-table td {
+    background-color: #f9f9f9;
+}
+
+.no-services-message {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+}

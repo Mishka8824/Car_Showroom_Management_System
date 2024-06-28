@@ -1,0 +1,135 @@
+//////////////////////////////////////////
+available_cars Table
+/////////////////////////////////////////
+
++-----+---------------+------------+------+--------+-------------+------------+---------------------+
+| VIN | BRAND         | MODEL      | YEAR | COLOR  | ENGINE_DISP | COST       | CREATED_AT          |
++-----+---------------+------------+------+--------+-------------+------------+---------------------+
+|   1 | Toyota        | Corolla    | 2020 | Blue   |        1600 | 2500000.00 | 2023-12-17 15:09:39 |
+|   2 | Honda         | Civic      | 2019 | Silver |        1800 | 2700000.00 | 2023-12-17 15:09:39 |
+|   3 | Ford          | Fusion     | 2021 | Black  |        2000 | 3000000.00 | 2023-12-17 15:09:39 |
+|   4 | Chevrolet     | Malibu     | 2020 | Red    |        1900 | 2800000.00 | 2023-12-17 15:09:39 |
+|   5 | Nissan        | Altima     | 2018 | White  |        1700 | 2600000.00 | 2023-12-17 15:09:39 |
+|   6 | Hyundai       | Sonata     | 2019 | Gray   |        1600 | 2500000.00 | 2023-12-17 15:09:39 |
+|   7 | Kia           | Optima     | 2022 | Green  |        2000 | 3100000.00 | 2023-12-17 15:09:39 |
+|   8 | Mazda         | Mazda6     | 2020 | Blue   |        1800 | 2900000.00 | 2023-12-17 15:09:39 |
+|   9 | Volkswagen    | Passat     | 2017 | Black  |        1700 | 2600000.00 | 2023-12-17 15:09:39 |
+|  10 | Subaru        | Legacy     | 2019 | Silver |        2000 | 3100000.00 | 2023-12-17 15:09:39 |
+|  11 | BMW           | 3 Series   | 2021 | White  |        2500 | 4000000.00 | 2023-12-17 15:09:39 |
+|  12 | Mercedes-Benz | C-Class    | 2022 | Red    |        2400 | 3800000.00 | 2023-12-17 15:09:39 |
+|  13 | Audi          | A4         | 2018 | Gray   |        2200 | 3500000.00 | 2023-12-17 15:09:39 |
+|  14 | Lexus         | ES         | 2019 | Black  |        2500 | 4000000.00 | 2023-12-17 15:09:39 |
+|  15 | Infiniti      | Q50        | 2020 | Blue   |        2300 | 3700000.00 | 2023-12-17 15:09:39 |
+|  16 | Tesla         | Model 3    | 2022 | White  |           0 | 5000000.00 | 2023-12-17 15:09:39 |
+|  17 | Ford          | Mustang    | 2021 | Red    |        5000 | 7000000.00 | 2023-12-17 15:09:39 |
+|  18 | Chevrolet     | Camaro     | 2019 | Yellow |        4500 | 6500000.00 | 2023-12-17 15:09:39 |
+|  19 | Dodge         | Challenger | 2020 | Black  |        4800 | 6800000.00 | 2023-12-17 15:09:39 |
+|  20 | Porsche       | 911        | 2021 | Silver |        3500 | 6000000.00 | 2023-12-17 15:09:39 |
++-----+---------------+------------+------+--------+-------------+------------+---------------------+
+
+
+////////////////////////////////////////
+Services Table
+///////////////////////////////////////
+
++------------+--------------------------+-----------------+-----------------+--------+---------------------+
+| Service_ID | Type_of_service          | Cost_of_service | Date_of_service | Car_ID | Created_at          |
++------------+--------------------------+-----------------+-----------------+--------+---------------------+
+|          1 | Oil Change               |         2000.00 | 2022-01-15      |      1 | 2023-12-17 15:09:52 |
+|          2 | Brake Service            |         3500.00 | 2022-02-20      |      3 | 2023-12-17 15:09:52 |
+|          3 | Tire Rotation            |         1500.00 | 2022-03-25      |      5 | 2023-12-17 15:09:52 |
+|          4 | Engine Tune-up           |         5000.00 | 2022-04-10      |      7 | 2023-12-17 15:09:52 |
+|          5 | Transmission Flush       |         3000.00 | 2022-05-05      |      9 | 2023-12-17 15:09:52 |
+|          6 | Wheel Alignment          |         2000.00 | 2022-06-15      |     11 | 2023-12-17 15:09:52 |
+|          7 | Battery Replacement      |         2500.00 | 2022-07-20      |     13 | 2023-12-17 15:09:52 |
+|          8 | Air Conditioning Service |         1800.00 | 2022-08-25      |     15 | 2023-12-17 15:09:52 |
+|          9 | Spark Plug Replacement   |         1200.00 | 2022-09-10      |     17 | 2023-12-17 15:09:52 |
+|         10 | Coolant Flush            |         2800.00 | 2022-10-05      |     19 | 2023-12-17 15:09:52 |
+|         11 | Oil Change               |         2200.00 | 2022-11-15      |      2 | 2023-12-17 15:09:52 |
+|         12 | Brake Service            |         3800.00 | 2022-12-20      |      4 | 2023-12-17 15:09:52 |
+|         13 | Tire Rotation            |         1700.00 | 2023-01-25      |      6 | 2023-12-17 15:09:52 |
+|         14 | Engine Tune-up           |         5500.00 | 2023-02-10      |      8 | 2023-12-17 15:09:52 |
+|         15 | Transmission Flush       |         3200.00 | 2023-03-15      |     10 | 2023-12-17 15:09:52 |
+|         16 | Wheel Alignment          |         2300.00 | 2023-04-20      |     12 | 2023-12-17 15:09:52 |
+|         17 | Battery Replacement      |         2700.00 | 2023-05-25      |     14 | 2023-12-17 15:09:52 |
+|         18 | Air Conditioning Service |         2000.00 | 2023-06-10      |     16 | 2023-12-17 15:09:52 |
+|         19 | Spark Plug Replacement   |         1400.00 | 2023-07-15      |     18 | 2023-12-17 15:09:52 |
+|         22 | Engine Replacement       |       200000.00 | 2023-12-29      |      7 | 2023-12-17 17:15:00 |
++------------+--------------------------+-----------------+-----------------+--------+---------------------+
+
+
+//////////////////////////////////////
+Spare_Parts Table
+/////////////////////////////////////
+
++-----+-----------------------------+----------------+------------------+---------------+------------+
+| PID | Part_Name                   | Part_Type      | Quantity_stocked | Cost_per_Unit | Service_ID |
++-----+-----------------------------+----------------+------------------+---------------+------------+
+|   1 | Spark Plug                  | Engine         |               50 |        499.99 |          1 |
+|   2 | Oil Filter                  | Engine         |              100 |        850.00 |          2 |
+|   3 | Brake Pads                  | Brakes         |               30 |       2000.00 |          3 |
+|   4 | Air Filter                  | Engine         |               80 |        699.99 |          1 |
+|   5 | Transmission Fluid          | Transmission   |               40 |       1299.99 |          4 |
+|   6 | Wiper Blades                | Exterior       |               25 |        995.00 |          5 |
+|   7 | Battery                     | Electrical     |               15 |       8999.99 |          6 |
+|   8 | Brake Fluid                 | Brakes         |               35 |        750.00 |          3 |
+|   9 | Alternator                  | Electrical     |               10 |      12999.99 |          7 |
+|  10 | Radiator Hose               | Cooling System |               20 |        525.00 |          8 |
+|  11 | Power Steering Fluid        | Steering       |               25 |       1199.99 |          9 |
+|  12 | Headlight Bulbs             | Electrical     |               50 |        450.00 |         10 |
+|  13 | Cabin Air Filter            | Interior       |               40 |       1275.00 |         11 |
+|  14 | Shock Absorbers             | Suspension     |               15 |       3499.99 |         12 |
+|  15 | Fuel Filter                 | Fuel System    |               30 |        825.00 |         13 |
+|  16 | Thermostat                  | Cooling System |               20 |       1050.00 |          8 |
+|  17 | Starter Motor               | Electrical     |               10 |       7999.99 |         14 |
+|  18 | Tire Pressure Gauge         | Tools          |               60 |        399.99 |         15 |
+|  19 | Engine Oil                  | Engine         |               50 |       1999.99 |          2 |
+|  20 | Oxygen Sensor               | Exhaust        |               15 |       2999.99 |         16 |
+|  21 | Brake Calipers              | Brakes         |               18 |       4500.00 |          3 |
+|  22 | Wheel Bearings              | Suspension     |               25 |       1599.99 |         12 |
+|  23 | Fuel Pump                   | Fuel System    |               12 |       6450.00 |         13 |
+|  24 | Drive Belt                  | Engine         |               30 |        875.00 |          1 |
+|  25 | Ignition Coil               | Electrical     |               20 |       1799.99 |         14 |
+|  26 | Timing Belt                 | Engine         |               25 |       1299.99 |          2 |
+|  27 | Coolant                     | Cooling System |               40 |        799.99 |          8 |
+|  28 | Exhaust Pipe                | Exhaust        |               15 |       2499.99 |         16 |
+|  29 | Clutch Kit                  | Transmission   |               12 |       3500.00 |          4 |
+|  30 | Steering Rack               | Steering       |               10 |       6499.99 |          9 |
+|  31 | Brake Rotors                | Brakes         |               22 |       1800.00 |          3 |
+|  32 | CV Joints                   | Suspension     |               18 |       1499.99 |         12 |
+|  33 | Air Conditioning Compressor | Interior       |                8 |       6999.99 |         11 |
+|  34 | Fuel Injectors              | Fuel System    |               16 |       4499.99 |         13 |
+|  35 | Wheel Hub Assembly          | Suspension     |               20 |       1299.99 |         12 |
+|  36 | Car Battery Charger         | Electrical     |               30 |       1199.99 |          6 |
+|  37 | Radiator                    | Cooling System |               10 |       4499.99 |          8 |
+|  38 | Brake Master Cylinder       | Brakes         |               15 |       1599.99 |          3 |
+|  39 | Power Window Regulator      | Interior       |               18 |        899.99 |         11 |
+|  40 | Oxygen Sensor               | Exhaust        |               15 |       3299.99 |         16 |
+|  41 | Windshield Washer Pump      | Exterior       |               25 |        499.99 |          5 |
+|  42 | Ignition Switch             | Electrical     |               12 |        799.99 |         14 |
+|  43 | Engine Mount                | Engine         |               20 |       1299.99 |          2 |
+|  44 | Shock Absorber Mount        | Suspension     |               15 |        799.99 |         12 |
+|  45 | Car Horn                    | Electrical     |               30 |        599.99 |         14 |
+|  46 | Throttle Position Sensor    | Engine         |               18 |        799.99 |          2 |
+|  47 | Catalytic Converter         | Exhaust        |               10 |       3499.99 |         16 |
+|  48 | Head Gasket                 | Engine         |               12 |       1299.99 |          1 |
+|  49 | Car Thermostat              | Cooling System |               15 |        699.99 |          8 |
+|  50 | Drive Shaft                 | Transmission   |                8 |       2999.99 |          4 |
+|  51 | Fuel Pressure Regulator     | Fuel System    |               10 |        899.99 |         13 |
+|  52 | Car Starter                 | Electrical     |               10 |       3499.99 |         14 |
+|  53 | Car Alternator              | Electrical     |                8 |       4499.99 |          7 |
++-----+-----------------------------+----------------+------------------+---------------+------------+
+
+
+////////////////////////////////////
+my_cars Table
+///////////////////////////////////
+
+[empty] as records were supposed to be inserted through the available_cars table upon purchase of a car
+
+
+//////////////////////////////////
+my_services Table
+/////////////////////////////////
+
+Depends upon the records in the my_cars Table as these two table are joined through foreign key

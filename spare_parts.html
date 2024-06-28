@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spare Parts Inventory</title>
+    <link rel="stylesheet" href="spare_parts_styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Spare Parts Inventory</h2>
+
+        <table id="sparePartsTable">
+            <thead>
+                <tr>
+                    <th>Part ID</th>
+                    <th>Part Name</th>
+                    <th>Part Type</th>
+                    <th>Quantity</th>
+                    <th>Cost per Unit</th>
+                    <th>Service Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Spare parts data will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Function to fetch spare parts data from the server
+        async function fetchSpareParts() {
+    try {
+        const response = await fetch('http://localhost:3000/spare-parts');
+        const data = await response.json();
+        return data.spareParts;
+    } catch (error) {
+        console.error('Error fetching spare parts:', error);
+        return [];
+    }
+}
+
+        // Function to render spare parts data in the table
+        async function renderSpareParts() {
+            const sparePartsData = await fetchSpareParts();
+            const tableBody = document.querySelector('#sparePartsTable tbody');
+            tableBody.innerHTML = '';
+
+            sparePartsData.forEach(part => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${part.PID}</td>
+                    <td>${part.Part_Name}</td>
+                    <td>${part.Part_Type}</td>
+                    <td>${part.Quantity_stocked}</td>
+                    <td>${part.Cost_per_Unit}</td>
+                    <td>${part.Service_Name}</td>
+                    <td>
+                        <button onclick="changeQuantity(${part.PID}, 'increase')">+</button>
+                        <button onclick="changeQuantity(${part.PID}, 'decrease')">-</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to change the quantity of a specific spare part
+        async function changeQuantity(PID, action) {
+                const response = await fetch(`/spare-parts/${PID}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',  // Include this line to send credentials
+                    body: JSON.stringify({ action }),
+                });
+
+                if (response.ok) {
+                    renderSpareParts();
+                } else {
+                    console.error('Error changing quantity:', response.statusText);
+                }
+            }
+
+
+        // Initial rendering of spare parts data
+        renderSpareParts();
+    </script>
+</body>
+</html>

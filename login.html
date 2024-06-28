@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Car Management System</title>
+    <link rel="stylesheet" href="signin_styles.css" />
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm" action="/login" method="post">
+            <label for="userType">Select user type:</label>
+            <select id="userType" name="userType" required>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+            <br />
+
+            <div id="passwordContainer" style="display: none">
+                <label for="password">Enter password:</label>
+                <input type="password" id="password" name="password" required />
+                <br />
+            </div>
+
+            <button type="button" onclick="login()">Login</button>
+
+            <!-- Display login error if any -->
+            <?php if (isset($_GET['error'])) : ?>
+                <p style="color: red;"><?php echo $_GET['error']; ?></p>
+            <?php endif; ?>
+        </form>
+    </div>
+
+    <script>
+        function login() {
+            const userType = document.getElementById("userType").value;
+            const password = document.getElementById("password").value;
+
+            // Basic validation - you should use a more secure method
+            if (userType === "admin" && password !== "adminpassword") {
+                alert("Incorrect password for admin.");
+                return;
+            }
+
+            // Simulate authentication - redirect based on user type
+            if (userType === "user" || (userType === "admin" && password === "adminpassword")) {
+                const basePath = window.location.pathname.split('/').slice(0, -1).join('/');
+                window.location.href = `${basePath}/${userType === "admin" ? "adminMenu.html" : "userMenu.html"}`;
+            } else {
+                alert("Invalid credentials. Please try again.");
+            }
+        }
+
+        document.getElementById("userType").addEventListener("change", function () {
+            const passwordContainer = document.getElementById("passwordContainer");
+            if (this.value === "admin") {
+                passwordContainer.style.display = "block";
+            } else {
+                passwordContainer.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

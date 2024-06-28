@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchasable Cars - Car Management System</title>
+    <link rel="stylesheet" href="purchasable_cars_styles.css" />
+</head>
+<body>
+    <h1>Purchasable Cars</h1>
+
+    <table id="purchasableCarsTable">
+        <thead>
+            <tr>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Color</th>
+                <th>Engine Displacement</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        // Fetch data from the server
+        fetch('http://localhost:3000/cars')
+            .then(response => response.json())
+            .then(data => {
+                const purchasableCarsTable = document.getElementById('purchasableCarsTable');
+                const tbody = purchasableCarsTable.querySelector('tbody');
+
+                // Check if there are no available cars
+                if (data.cars.length === 0) {
+                    const noCarsRow = document.createElement('tr');
+                    const noCarsCell = document.createElement('td');
+                    noCarsCell.setAttribute('colspan', '6'); // Adjust colspan to match the number of columns
+                    noCarsCell.textContent = 'No available cars for purchase.';
+                    noCarsRow.appendChild(noCarsCell);
+                    tbody.appendChild(noCarsRow);
+                } else {
+                    // Populate the table with available cars
+                    data.cars.forEach(car => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `<td>${car.BRAND}</td>
+                                         <td>${car.MODEL}</td>
+                                         <td>${car.YEAR}</td>
+                                         <td>${car.COLOR}</td>
+                                         <td>${car.ENGINE_DISP}</td>
+                                         <td><button onclick="purchaseCar(${car.ID})">Purchase</button></td>`;
+                        tbody.appendChild(row);
+                    });
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+        // Function to handle the purchase button click
+        function purchaseCar(carId) {
+            // Send a request to the server to handle the purchase
+            fetch(`http://localhost:3000/purchase/${carId}`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Reload the page or update the table
+                        // You can add additional logic here based on the server response
+                        location.reload();
+                    } else {
+                        console.error('Purchase failed:', data.error);
+                    }
+                })
+                .catch(error => console.error('Error purchasing car:', error));
+        }
+    </script>
+</body>
+</html>

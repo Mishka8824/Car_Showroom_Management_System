@@ -1,0 +1,115 @@
+/* services_styles.css */
+
+/* Body Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 20px;
+  background-color: #f8f8f8; /* Light gray background */
+  color: #333; /* Dark text color */
+}
+
+/* Header Styles */
+h1 {
+  color: #3498db; /* Blue header color */
+}
+
+h2 {
+  color: #e74c3c; /* Red header color */
+}
+
+/* Form Styles */
+form {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff; /* White background */
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: #555; /* Dark gray text for labels */
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  background-color: #e74c3c; /* Red for submit button */
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #c0392b; /* Darker red on hover */
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #e74c3c; /* Red header background color */
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #f2dede; /* Light red for even rows */
+}
+
+/* Button Styles */
+table button {
+  background-color: #3498db; /* Blue for table buttons */
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+table button:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+
+#addServiceForm{
+  display: none
+}
+
+#addServiceForm.show {
+  display: block;
+}
+
+#toggleFormButton {
+  background-color: #3498db; /* Blue for button */
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#toggleFormButton:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+

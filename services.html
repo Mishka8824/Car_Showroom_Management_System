@@ -1,0 +1,191 @@
+<!-- services.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Management</title>
+    <link rel="stylesheet" href="services_styles.css">
+</head>
+
+<body>
+    <h1>Services Management</h1>
+
+    <!-- Button to Toggle Add Service Form -->
+    <button id="toggleFormButton">Toggle Add Service Form</button>
+
+    <!-- Add Service Form -->
+    <form id="addServiceForm">
+        <label for="typeOfService">Type of Service:</label>
+        <input type="text" id="typeOfService" name="typeOfService" required />
+        <br />
+        <label for="costOfService">Cost of Service (PKR):</label>
+        <input type="number" id="costOfService" name="costOfService" step="0.01" required />
+        <br />
+        <label for="dateOfService">Date of Service:</label>
+        <input type="date" id="dateOfService" name="dateOfService" required />
+        <br />
+        <label for="carId">Car ID:</label>
+        <input type="number" id="carId" name="carId" required />
+        <br />
+        <button type="submit">Add Service</button>
+    </form>
+
+    <!-- Services List Table -->
+    <h2>Services List</h2>
+    <table id="servicesList">
+        <thead>
+            <tr>
+                <th>Service ID</th>
+                <th>Type of Service</th>
+                <th>Cost of Service (PKR)</th>
+                <th>Date of Service</th>
+                <th>Car ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const addServiceForm = document.getElementById("addServiceForm");
+            const toggleFormButton = document.getElementById("toggleFormButton");
+            const serviceList = document.querySelector("#servicesList tbody");
+
+            // Event listener for the button to toggle the form
+            toggleFormButton.addEventListener("click", () => {
+            // Toggle the 'show' class on the addServiceForm
+            const form = document.getElementById("addServiceForm");
+            form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
+
+            // If the form is now visible, focus on the first input field
+                if (form.style.display === "block") {
+                    document.getElementById("typeOfService").focus();
+                }
+            });
+
+
+            // Fetch services from the server
+            const fetchServices = async () => {
+                const response = await fetch("http://localhost:3000/services");
+                const data = await response.json();
+                const services = data.services;
+
+                serviceList.innerHTML = "";
+                services.forEach((service) => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${service.Service_ID}</td>
+                        <td>${service.Type_of_service}</td>
+                        <td>${service.Cost_of_service}</td>
+                        <td>${service.Date_of_service}</td>
+                        <td>${service.Car_ID}</td>
+                        <td>
+                            <button onclick="updateService(${service.Service_ID})">Update</button>
+                            <button onclick="deleteService(${service.Service_ID})">Delete</button>
+                        </td>
+                    `;
+                    serviceList.appendChild(tr);
+                });
+            };
+
+            // Event listener for the form submission
+            addServiceForm.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                const typeOfService = document.getElementById("typeOfService").value;
+                const costOfService = document.getElementById("costOfService").value;
+                const dateOfService = document.getElementById("dateOfService").value;
+                const carId = document.getElementById("carId").value;
+
+                await fetch("http://localhost:3000/services", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ type_of_service: typeOfService, cost_of_service: costOfService, date_of_service: dateOfService, car_id: carId }),
+                });
+
+                fetchServices();
+                addServiceForm.reset();
+            });
+
+            window.updateService = (Service_ID) => {
+                const typeOfService = prompt("Enter new type of service:");
+                const costOfService = prompt("Enter new cost of service (PKR):");
+                const dateOfService = prompt("Enter new date of service:");
+                const carId = prompt("Enter new car ID:");
+
+                // Format the date if it's not null
+                const formattedDate = dateOfService !== null
+                    ? new Date(dateOfService).toISOString().split('T')[0]
+                    : null;
+
+                // Create an object to store the fields to be updated
+                const updatedFields = {};
+
+                // Add fields to the object only if they have a non-null value
+                if (typeOfService !== null) {
+                    updatedFields.type_of_service = typeOfService;
+                }
+
+                if (costOfService !== null) {
+                    updatedFields.cost_of_service = costOfService;
+                }
+
+                if (formattedDate !== null) {
+                    updatedFields.date_of_service = formattedDate;
+                }
+
+                if (carId !== null) {
+                    updatedFields.car_id = carId;
+                }
+
+                // Check if there are any fields to update before sending the request
+                if (Object.keys(updatedFields).length > 0) {
+                    fetch(`http://localhost:3000/services/${Service_ID}`, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(updatedFields),
+                    });
+
+                    fetchServices();
+                } else {
+                    console.log("No fields to update.");
+                }
+            };
+
+
+            // Function to delete a service
+            window.deleteService = (id) => {
+                if (confirm("Are you sure you want to delete this service?")) {
+                    fetch(`http://localhost:3000/services/${id}`, {
+                        method: "DELETE",
+                    })
+                        .then((response) => {
+                            if (!response.ok) {
+                                throw new Error("Error deleting service");
+                            }
+                            return response.json();
+                        })
+                        .then((data) => {
+                            console.log("Service deleted:", data);
+                            fetchServices(); // Update the UI after successful delete
+                        })
+                        .catch((error) => {
+                            console.error("Error deleting service:", error);
+                        });
+                }
+            };
+
+            // Fetch initial services
+            fetchServices();
+        });
+    </script>
+</body>
+
+</html>

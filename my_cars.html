@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cars - Car Management System</title>
+    <link rel="stylesheet" href="my_cars_styles.css" />
+</head>
+<body>
+    <h1>My Cars</h1>
+
+    <table id="myCarsTable">
+        <thead>
+            <tr>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Color</th>
+                <th>Engine Displacement</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        // Fetch data from the server
+        fetch("http://localhost:3000/my-cars")
+            .then(response => response.json())
+            .then(data => {
+                const myCarsTable = document.getElementById('myCarsTable');
+                const tbody = myCarsTable.querySelector('tbody');
+
+                // Check if there are no purchased cars
+                if (data.myCars.length === 0) {
+                    const noCarsRow = document.createElement('tr');
+                    const noCarsCell = document.createElement('td');
+                    noCarsCell.setAttribute('colspan', '6'); // Adjust colspan to match the number of columns
+                    noCarsCell.textContent = 'No purchased cars.';
+                    noCarsRow.appendChild(noCarsCell);
+                    tbody.appendChild(noCarsRow);
+                } else {
+                    // Populate the table with purchased cars
+                    data.myCars.forEach(car => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `<td>${car.BRAND}</td>
+                                         <td>${car.MODEL}</td>
+                                         <td>${car.YEAR}</td>
+                                         <td>${car.COLOR}</td>
+                                         <td>${car.ENGINE_DISP}</td>
+                                         <td>Actions</td>`; // You can add actions here
+                        tbody.appendChild(row);
+                    });
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>

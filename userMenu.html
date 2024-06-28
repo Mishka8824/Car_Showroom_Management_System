@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Menu - Car Management System</title>
+    <link rel="stylesheet" href="user_menu_styles.css" />
+</head>
+<body>
+    <div class="user-menu">
+        <h1>Welcome, User!</h1>
+        <ul>
+            <li><a href="my_cars.html">My Cars</a></li>
+            <li><a href="purchasable_cars.html">Available Cars</a></li>
+            <li><a href="my_services.html">My Services</a></li>
+        </ul>
+        <button id="logoutbtn" onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        function logout() {
+            window.location.href = './login.html';
+        }
+    </script>
+</body>
+</html>
